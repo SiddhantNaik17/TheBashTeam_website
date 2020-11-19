@@ -1,0 +1,66 @@
+[
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "name": "Multi Purpose Lubricant",
+    "slug": "multi-purpose-lubricant",
+    "category": 4,
+    "description": "MAXIMA MPPL (Multi Purpose Penetrant Lube) is a superior, all purpose penetrating lube that displaces water and provides excellent rust and corrosion protection. It is useful wherever a penetrating lubricant is required. Maxima MPPL forms a protective film on metal and will not harm plastic or painted surfaces. Excellent fogging oil or starting fluid for 2-cycle or 4-cycle engines.",
+    "country": "India",
+    "mrp": "500.00",
+    "selling_price": "450.00",
+    "stock": 20,
+    "active": true,
+    "timestamp": "2020-11-19T13:41:40.462Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "name": "Bluetooth Headset and Intercom",
+    "slug": "Bluetooth-headset-and-intercom",
+    "category": 1,
+    "description": "EXCEPTIONAL AUDIO QUALITY, EVERY TIME Delivers outstanding audio performance up to 200 meters (220 yards) away Bluetooth® 3.0 advanced signal processing enables the 3S to deliver outstanding incoming and outgoing audio performance for music, phone calls, GPS directions, and intercom conversations with riding companions up to 200 meters (220 yards) away. The 3S functions perfectly as an integrated scooter headset. Whether you use the 3S for communicating on your commute, or listening to music this scooter Bluetooth headset is extremely user friendly.",
+    "country": "IN",
+    "mrp": "9179.00",
+    "selling_price": "8999.00",
+    "stock": 1300,
+    "active": true,
+    "timestamp": "2020-11-19T15:50:29.513Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "name": "10S Motorcycle Bluetooth Communication System",
+    "slug": "10s-motorcycle-bluetooth-communication-system",
+    "category": 1,
+    "description": "KEEPS YOU CONNECTED AND IN THE LOOP Bluetooth 4.1 and Universal Intercom™ The Sena 10S Motorcycle Bluetooth® Communication System is an upgraded version of the original SMH10 system, which has proven itself roadworthy to motorcyclists everywhere. Now in a slimmer profile, the 10S maximizes the enjoyment factor of your ride by keeping you in touch with up to four riding companions via crystal-clear HD audio, up to 1.6 km (1 mile) away, through the One Touch Group Intercom™, the 10S is the best long range Bluetooth headset. The unit also uses the Universal Intercom™ protocol so it can communicate with all Sena motorcycle Bluetooth headsets and non-Sena Bluetooth headsets on the market.",
+    "country": "IN",
+    "mrp": "18200.00",
+    "selling_price": "15999.00",
+    "stock": 120,
+    "active": true,
+    "timestamp": "2020-11-19T15:50:29.513Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "name": "EZ-STRAP Cell Phone Cradle Ram Mount",
+    "slug": "ez-strap-cell-phone-cradle-ram-mount",
+    "category": 3,
+    "description": "RAM Fork Stem Mount with Short Double Socket Arm & Universal X-Grip® Cell/iPhone Cradle. RAM Mounts are world's no.1 mounts for mobile phones and cameras",
+    "country": "IN",
+    "mrp": "2000.00",
+    "selling_price": "1999.00",
+    "stock": 10,
+    "active": true,
+    "timestamp": "2020-11-19T15:50:29.513Z"
+  }
+}
+]

@@ -1,0 +1,34 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Bluetooth Communications",
+    "slug": "bluetooth-communications"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Stands",
+    "slug": "stands"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Mobile Mounts",
+    "slug": "mobile-mounts"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Lubricants",
+    "slug": "lubricants"
+  }
+}
+]
