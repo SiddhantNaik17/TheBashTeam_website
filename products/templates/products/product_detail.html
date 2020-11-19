@@ -1,0 +1,28 @@
+<h1> {{ product.name }} </h1>
+
+<section id="images">
+    {% for image in product.images.all %}
+    <img src='{{ image.src.url }}'/>
+    {% endfor %}
+</section>
+
+<section id="price">
+    &#x20B9;{{ product.selling_price }} <del> &#x20B9;{{ product.mrp }} </del>
+    <br><br>
+</section>
+
+<section id="description">
+    {{ product.description }}
+    <br><br>
+</section>
+
+<section id="order">
+    <form action="POST">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" min="1" value="1">
+        <br><br>
+        <button type="button">Add to Cart</button>
+        <button type="button">Buy Now</button>
+        <br><br>
+    </form>
+</section>

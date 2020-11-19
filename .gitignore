@@ -1,6 +1,7 @@
 .idea/
 venv/
 **/__pycache__/
+media/
 
 # Ignore some stuff for now
 db.sqlite3
