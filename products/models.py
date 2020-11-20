@@ -56,14 +56,10 @@ class Product(models.Model):
         return reverse('product-detail', kwargs={'category': self.category.slug, 'slug': self.slug})
 
     def add_image(self, image):
-        ins = ProductImage(product=self, src=image)
-        # Set the first image as default
-        if not self.images.exists():
-            ins.default = True
-        ins.save()
+        ProductImage.objects.create(product=self, src=image)
 
     def default_image(self):
-        return self.images.filter(default=True).first()
+        return self.images.filter().first()
 
 
 class ProductImage(models.Model):
@@ -71,4 +67,3 @@ class ProductImage(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     src = models.ImageField(upload_to='product_images')
-    default = models.BooleanField(default=False)

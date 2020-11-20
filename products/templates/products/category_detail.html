@@ -5,7 +5,6 @@
 {% block content %}
 <h1>{{ category.name }}</h1>
 
-{% if not category.parent %}
 <div class="row">
   {% for product in category.products.all %}
   <div class="column">
