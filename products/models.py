@@ -28,6 +28,8 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(editable=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
+    motorcycles_supported = models.ManyToManyField(
+        'motorcycles.Motorcycle', blank=True, related_name='products')
 
     description = models.TextField()
     country = models.CharField(max_length=2, choices=pytz.country_names.items(), verbose_name='Country of Origin')
