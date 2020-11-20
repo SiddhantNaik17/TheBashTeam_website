@@ -4,7 +4,8 @@
 {% block header %}<br>{{ category.name }}<br>{% endblock header %}
 
 {% block content %}
-<div class="row">
+<br>
+<div class="ui link cards">
   {% for product in category.products.all %}
   <div class="ui card">
     <a class="image" href="{{ product.get_absolute_url }}">
