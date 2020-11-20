@@ -12,6 +12,7 @@ class Category(models.Model):
 
     name = models.CharField(max_length=50)
     slug = models.SlugField(editable=False)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='sub_category', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

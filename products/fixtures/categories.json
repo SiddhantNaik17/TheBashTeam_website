@@ -3,32 +3,90 @@
   "model": "products.category",
   "pk": 1,
   "fields": {
-    "name": "Bluetooth Communications",
-    "slug": "bluetooth-communications"
+    "name": "Riding Gear",
+    "slug": "riding-gears",
+    "parent": null
   }
 },
 {
   "model": "products.category",
   "pk": 2,
   "fields": {
-    "name": "Stands",
-    "slug": "stands"
+    "name": "Accessories",
+    "slug": "accessories",
+    "parent": null
   }
 },
 {
   "model": "products.category",
   "pk": 3,
   "fields": {
-    "name": "Mobile Mounts",
-    "slug": "mobile-mounts"
+    "name": "Parts",
+    "slug": "parts",
+    "parent": null
   }
 },
 {
   "model": "products.category",
   "pk": 4,
   "fields": {
+    "name": "Helmets",
+    "slug": "helmets",
+    "parent": 1
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "Jackets",
+    "slug": "jackets",
+    "parent": 1
+  }
+},
+{
+  "model": "products.category",
+  "pk": 6,
+  "fields": {
+    "name": "Bluetooth Communications",
+    "slug": "bluetooth-communications",
+    "parent": 2
+  }
+},
+{
+  "model": "products.category",
+  "pk": 7,
+  "fields": {
+    "name": "Mobile Mounts",
+    "slug": "mobile-mounts",
+    "parent": 2
+  }
+},
+{
+  "model": "products.category",
+  "pk": 8,
+  "fields": {
     "name": "Lubricants",
-    "slug": "lubricants"
+    "slug": "lubricants",
+    "parent": 2
+  }
+},
+{
+  "model": "products.category",
+  "pk": 9,
+  "fields": {
+    "name": "Batteries",
+    "slug": "batteries",
+    "parent": 3
+  }
+},
+{
+  "model": "products.category",
+  "pk": 10,
+  "fields": {
+    "name": "Exhaust",
+    "slug": "exhaust",
+    "parent": 3
   }
 }
 ]
