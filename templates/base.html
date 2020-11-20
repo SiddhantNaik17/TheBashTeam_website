@@ -3,55 +3,88 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}BASH TEAM{% endblock title %}</title>
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/semantic.min.css' %}">
+  <link href="{% static 'css/custom_style.css' %}" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="{% static 'js/semantic.min.js' %}"></script>
+  <script src="{% static 'js/scripts.js' %}"></script>
 </head>
 
-<body style="background-color:powderblue;">
-<div class="topnav">
-  <ul>
-    <li><a class= "active" href="/">Home</a></li>
-    <!-- Riding Gears -->
-    <li class="dropdown">
-      <a href="{% url 'category-detail' 'riding-gears' %}" class="dropbtn">Riding Gears</a>
-      <div class="dropdown-content">
-        {% for category in riding_gears %}
-        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-        {% endfor %}
+<body>
+<!-- Following Menu -->
+<div class="ui inverted vertical {% if request.path == '/' %}masthead{% endif %} center aligned segment">
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item" href="/" >Home</a>
+        <!-- Riding Gears -->
+        <div class="ui pointing dropdown link item">
+          <span class="text">Riding Gears</span>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            {% for category in riding_gears %}
+            <a class="item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- Accessories -->
+        <div class="ui pointing dropdown link item">
+          <span class="text">Accessories</span>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            {% for category in accessories %}
+            <a class="item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- Parts -->
+        <div class="ui pointing dropdown link item">
+          <span class="text">Parts</span>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            {% for category in parts %}
+            <a class="item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="right item">
+          {% if user.is_authenticated %}
+          <a class="ui inverted button" href="{% url 'profile' %}">Orders</a>
+          <a class="ui inverted button" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a class="ui inverted button" href="{% url 'login' %}">Log in</a>
+          {% endif %}
+          <a class="ui inverted button" href="{% url 'cart-detail' %}">Cart</a>
+        </div>
       </div>
-    </li>
+    </div>
 
-    <!-- Accessories -->
-    <li class="dropdown">
-      <a href="{% url 'category-detail' 'accessories' %}" class="dropbtn">Accessories</a>
-      <div class="dropdown-content">
-        {% for category in accessories %}
-        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-        {% endfor %}
-      </div>
-    </li>
-
-    <!-- Parts -->
-    <li class="dropdown">
-      <a href="{% url 'category-detail' 'parts' %}" class="dropbtn">Parts</a>
-      <div class="dropdown-content">
-        {% for category in parts %}
-        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-        {% endfor %}
-      </div>
-    </li>
-
-    <li class="topnav-right">
-      {% if user.is_authenticated %}
-      <a href="{% url 'profile' %}">{{ user }}</a>
-      <a href="{% url 'logout' %}">Logout</a>
-      {% else %}
-      <a href="{% url 'login' %}">Login/Sign Up</a>
-      {% endif %}
-      <a href="{% url 'cart-detail' %}">Cart</a>
-    </li>
-  </ul>
-</div>
+    <div class="ui text container">
+      <h1 class="ui inverted header">{% block header %}{% endblock header %}</h1>
+      <h2>{% block sub-header %}{% endblock sub-header %}</h2>
+    </div>
+  </div>
 {% block content %}{% endblock content %}
-{% block footer %}{% endblock footer %}
+<br>
+<div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="seven wide column">
+          <h4 class="ui inverted header">About Us</h4>
+          <p>The Bash Website has been designed and developed keeping in mind the requirements of a rider which they always felt was lacking in their existing gear.</p>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Important Links</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Sitemap</a>
+            <a href="#" class="item">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 
 {% block title %}{{ category.name }}{% endblock title %}
+{% block header %}<br>{{ category.name }}<br>{% endblock header %}
 
 {% block content %}
-<h1>{{ category.name }}</h1>
-
 <div class="row">
   {% for product in category.products.all %}
-  <div class="column">
+  <div class="ui card">
+    <a class="image" href="{{ product.get_absolute_url }}">
+      <img src="{{ product.default_image.src.url }}">
+    </a>
     <div class="content">
-      <a href="{{ product.get_absolute_url }}">
-        <img src="{{ product.default_image.src.url }}">
-        <h3>{{ product }}</h3>
-      </a>
+      <a class="header" href="{{ product.get_absolute_url }}">{{ product }}</a>
+      <div class="meta">
+        <a>&#x20B9;{{ product.selling_price }} <del> &#x20B9;{{ product.mrp }} </del></a>
+      </div>
     </div>
   </div>
   {% empty %}

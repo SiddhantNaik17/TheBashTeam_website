@@ -1,50 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block header %}The Bash Website{% endblock header %}
+{% block sub-header %}Ultimate Destination For Motorcycle Accessories{% endblock sub-header %}
+
 {% block content %}
-<h2>THE ULTIMATE DESTINATION FOR MOTORCYCLE GEAR, ACCESSORIES AND PARTS</h2>
-<!--
-<div class="row">
-  <div class="column">
-    <div class="content">
-      <a href="">
-        <img src="{% static 'images/jacket.jpg' %}" style="width:100%">
-        <h3>Riding Gears</h3>
-      </a>
-    </div>
-  </div>
-  <div class="column">
-    <div class="content">
-      <a href="">
-        <img src="{% static 'images/accessories.jpg' %}" style="width:100%">
-        <h3>Accessories</h3>
-      </a>
-    </div>
-  </div>
-  <div class="column">
-    <div class="content">
-      <a href="">
-        <img src="{% static 'images/parts.jpg' %}" style="width:100%">
-        <h3>Parts</h3>
-      </a>
-    </div>
-  </div>
-</div>
--->
 {% if user.is_authenticated %}
 {% for motorcycle in user.motorcycles_owned.all %}
 {% if motorcycle.products.exists %}
-<h3>Products for your {{ motorcycle }}</h3>
-<div class="row">
+<br><br>
+<div class="ui text container">
+  <h2>Products for your {{ motorcycle }}</h2>
+</div>
+<br><br>
+
+<div class="ui link cards">
   {% for product in motorcycle.products.all %}
-  <div class="column">
+  <div class="ui card">
+    <a class="image" href="{{ product.get_absolute_url }}">
+      <img src="{{ product.default_image.src.url }}">
+    </a>
     <div class="content">
-      <a href="{{ product.get_absolute_url }}">
-        <img src="{{ product.default_image.src.url }}">
-        <h3>{{ product }}</h3>
-      </a>
-      <div>
-        &#x20B9;{{ product.selling_price }} <del> &#x20B9;{{ product.mrp }} </del>
+      <a class="header" href="{{ product.get_absolute_url }}">{{ product }}</a>
+      <div class="meta">
+        <a>&#x20B9;{{ product.selling_price }} <del> &#x20B9;{{ product.mrp }} </del></a>
       </div>
     </div>
   </div>
@@ -53,18 +32,21 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
-<h3>Trending Products</h3>
-<div class="row">
+<br><br><br>
+<div class="ui text container">
+  <h2>Trending Products</h2>
+</div>
+<br>
+<div class="ui link cards">
   {% for product in trending_products %}
-  <div class="column">
+  <div class="ui card">
+    <a class="image" href="{{ product.get_absolute_url }}">
+      <img src="{{ product.default_image.src.url }}">
+    </a>
     <div class="content">
-      <a href="{{ product.get_absolute_url }}">
-        <img src="{{ product.default_image.src.url }}">
-        <h3>{{ product }}</h3>
-      </a>
-      <div>
-        &#x20B9;{{ product.selling_price }} <del> &#x20B9;{{ product.mrp }} </del>
+      <a class="header" href="{{ product.get_absolute_url }}">{{ product }}</a>
+      <div class="meta">
+        <a>&#x20B9;{{ product.selling_price }} <del> &#x20B9;{{ product.mrp }} </del></a>
       </div>
     </div>
   </div>

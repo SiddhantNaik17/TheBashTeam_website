@@ -19,7 +19,7 @@ li {
 
 .topnav-right {
   float: right;
-	
+
 }
 
 li a, .dropbtn {
@@ -107,7 +107,7 @@ h1 {
   width: 25%;
 }
 
-/* Clear floats after rows */ 
+/* Clear floats after rows */
 .row:after {
   content: "";
   display: table;

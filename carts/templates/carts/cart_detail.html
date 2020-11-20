@@ -1,34 +1,49 @@
 {% extends 'base.html' %}
 
 {% block title %}Cart{% endblock title %}
+{% block header %}<br>Cart<br>{% endblock header %}
 
 {% block content %}
-<h1>Cart</h1>
-
+<br><br>
 {% if cart.products.exists %}
 {% for cart_product in cart.products.all %}
-<div class="row">
-    <div class="column">
-        <div class="content">
-          <img src="{{ cart_product.product.default_image.src.url }}">
-        </div>
+<div class="ui vertical">
+  <div class="ui middle aligned stackable grid container">
+    <div class="row">
+      <img src="{{ cart_product.product.default_image.src.url }}" class="ui bordered rounded image">
+      <div class="eight wide column">
+        <h3 class="ui header">{{ cart_product.product.name }}</h3>
+          <h4 class="ui header">&#x20B9;{{ cart_product.product.selling_price }} <del> &#x20B9;{{ cart_product.product.mrp }} </del></h4>
+          <h4 class="ui header">Quantity: {{ cart_product.quantity }}</h4>
+          <form method="POST" action="{% url 'cart-remove-product' %}">{% csrf_token %}
+            <input type="hidden" name="product-id" id="product-id" value="{{ cart_product.product.id }}">
+            <button class="ui button" type="submit" value="remove_product">Remove</button>
+          </form>
+      </div>
     </div>
-    <a href="{{ cart_product.product.get_absolute_url }}">
-        <h3>{{ cart_product.product }}</h3>
-    </a>
-    Quantity: {{ cart_product.quantity }}
-    <form method="POST" action="{% url 'cart-remove-product' %}">{% csrf_token %}
-        <input type="hidden" name="product-id" id="product-id" value="{{ cart_product.product.id }}">
-        <button type="submit" value="remove_product">Remove</button>
-    </form>
+  </div>
 </div>
 {% endfor %}
 
-Subtotal: &#x20B9;<span id="subtotal">{{ cart.subtotal }}</span>
-<br><br>
+<div class="ui vertical">
+  <div class="ui middle aligned stackable grid container">
+    <div class="row">
+        <div class="eight wide column">
+          <div class="ui left action input">
+            <button class="ui teal labeled icon button" onclick="location.href = '{% url 'cart-checkout' %}';">
+              <i class="cart icon"></i>
+              Checkout
+            </button>
+            <input type="text" value="&#x20B9;{{ cart.subtotal }}" readonly>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
 
-<input type='submit' value="Checkout" onclick="location.href = '{% url 'cart-checkout' %}';">
 {% else %}
-Your cart is empty!
+<div class="ui text container">
+  <h2>Your cart is empty!</h2>
+</div>
 {% endif %}
 {% endblock content %}
