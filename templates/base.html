@@ -51,7 +51,7 @@
         </div>
         <div class="right item">
           {% if user.is_authenticated %}
-          <a class="ui inverted button" href="{% url 'profile' %}">Orders</a>
+          <a class="ui inverted button" href="{% url 'orders' %}">Orders</a>
           <a class="ui inverted button" href="{% url 'logout' %}">Logout</a>
           {% else %}
           <a class="ui inverted button" href="{% url 'login' %}">Log in</a>
