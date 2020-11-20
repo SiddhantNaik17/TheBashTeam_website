@@ -22,3 +22,9 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Invalid credentials')
         login(request, user)
         return data
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email', 'full_name', 'motorcycles_owned']

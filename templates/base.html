@@ -1,0 +1,57 @@
+{% load static %}
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}BASH TEAM{% endblock title %}</title>
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+<body style="background-color:powderblue;">
+<div class="topnav">
+  <ul>
+    <li><a class= "active" href="/">Home</a></li>
+    <!-- Riding Gears -->
+    <li class="dropdown">
+      <a href="{% url 'category-detail' 'riding-gears' %}" class="dropbtn">Riding Gears</a>
+      <div class="dropdown-content">
+        {% for category in riding_gears %}
+        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+        {% endfor %}
+      </div>
+    </li>
+
+    <!-- Accessories -->
+    <li class="dropdown">
+      <a href="{% url 'category-detail' 'accessories' %}" class="dropbtn">Accessories</a>
+      <div class="dropdown-content">
+        {% for category in accessories %}
+        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+        {% endfor %}
+      </div>
+    </li>
+
+    <!-- Parts -->
+    <li class="dropdown">
+      <a href="{% url 'category-detail' 'parts' %}" class="dropbtn">Parts</a>
+      <div class="dropdown-content">
+        {% for category in parts %}
+        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+        {% endfor %}
+      </div>
+    </li>
+
+    <li class="topnav-right">
+      {% if user.is_authenticated %}
+      <a href="{% url 'profile' %}">{{ user }}</a>
+      <a href="{% url 'logout' %}">Logout</a>
+      {% else %}
+      <a href="{% url 'login' %}">Login/Sign Up</a>
+      {% endif %}
+      <a href="{% url 'cart-detail' %}">Cart</a>
+    </li>
+  </ul>
+</div>
+{% block content %}{% endblock content %}
+{% block footer %}{% endblock footer %}
+</body>
+</html>

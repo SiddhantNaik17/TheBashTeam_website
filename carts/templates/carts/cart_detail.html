@@ -1,23 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart{% endblock title %}
+
+{% block content %}
 <h1>Cart</h1>
 
 {% if cart.products.exists %}
-<ul id="cart-items">
-    {% for cart_product in cart.products.all %}
-    <li id="item-{{ cart_product.id }}"><a href="{{ product.absolute_url }}">
-        {{ cart_product.product.name }} </a> Quantity: {{ cart_product.quantity }}
-        <button type='button' id="remove_product">Remove</button>
-    </li>
-    {% endfor %}
-</ul>
+{% for cart_product in cart.products.all %}
+<div class="row">
+    <div class="column">
+        <div class="content">
+          <img src="{{ cart_product.product.default_image.src.url }}">
+        </div>
+    </div>
+    <a href="{{ cart_product.product.get_absolute_url }}">
+        <h3>{{ cart_product.product }}</h3>
+    </a>
+    Quantity: {{ cart_product.quantity }}
+    <form method="POST" action="{% url 'cart-remove-product' %}">{% csrf_token %}
+        <input type="hidden" name="product-id" id="product-id" value="{{ cart_product.product.id }}">
+        <button type="submit" value="remove_product">Remove</button>
+    </form>
+</div>
+{% endfor %}
 
 Subtotal: &#x20B9;<span id="subtotal">{{ cart.subtotal }}</span>
 <br><br>
 
-<form method="post" action="{% url 'cart-checkout' %}">{% csrf_token %}
-    <input type="hidden" name="cart-id" id="cart-id">
-    <input type='submit' name="checkout" id="checkout" value="Checkout">
-</form>
-
+<input type='submit' value="Checkout" onclick="location.href = '{% url 'cart-checkout' %}';">
 {% else %}
 Your cart is empty!
 {% endif %}
+{% endblock content %}

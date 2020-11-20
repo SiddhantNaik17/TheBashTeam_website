@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user }}{% endblock title %}
+
+{% block content %}
+<h3>My Profile</h3>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update Profile">
+</form>
+
+<h3>My Orders</h3>
+{% for order in user.orders.all %}
+{% for cart_product in order.cart.products.all %}
+<div class="row">
+    <div class="column">
+        <div class="content">
+          <img src="{{ cart_product.product.default_image.src.url }}">
+        </div>
+    </div>
+    <a href="{{ cart_product.product.get_absolute_url }}">
+        <h3>{{ cart_product.product }}</h3>
+    </a>
+    {{ order.status }}
+</div>
+{% endfor %}
+{% empty %}
+You haven't ordered anything yet
+{% endfor %}
+{% endblock content %}

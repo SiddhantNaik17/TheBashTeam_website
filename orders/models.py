@@ -8,7 +8,7 @@ class Address(models.Model):
     class Meta:
         verbose_name_plural = 'Addresses'
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='addresses')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE, related_name='addresses')
     name = models.CharField(max_length=120)
     address_line_1 = models.CharField(max_length=120)
     address_line_2 = models.CharField(max_length=120, null=True, blank=True)
@@ -32,18 +32,17 @@ class Address(models.Model):
 class Order(models.Model):
 
     class Status(models.TextChoices):
-        CREATED = 'CR', _('Created')
-        CONFIRMED = 'CO', _('Confirmed')
-        CANCELLED = 'CN', _('Cancelled')
-        SHIPPED = 'SH', _('Shipped')
-        DELIVERED = 'DL', _('Delivered')
-        REFUNDED = 'RE', _('Refunded')
+        CONFIRMED = 'Confirmed', _('Confirmed')
+        CANCELLED = 'Cancelled', _('Cancelled')
+        SHIPPED = 'Shipped', _('Shipped')
+        DELIVERED = 'Delivered', _('Delivered')
+        REFUNDED = 'Refunded', _('Refunded')
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE, related_name='orders')
     cart = models.ForeignKey('carts.Cart', on_delete=models.CASCADE)
     shipping_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='+')
     shipping_address_final = models.TextField(editable=False, null=True)
-    status = models.CharField(max_length=2, default=Status.CREATED, choices=Status.choices)
+    status = models.CharField(max_length=10, default=Status.CONFIRMED, choices=Status.choices)
     total = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)

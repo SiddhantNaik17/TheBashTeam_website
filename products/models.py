@@ -21,6 +21,9 @@ class Category(models.Model):
         self.slug = slugify(self.name)
         super().save(force_insert, force_update, using, update_fields)
 
+    def get_absolute_url(self):
+        return reverse('category-detail', kwargs={'slug': self.slug})
+
 
 class Product(models.Model):
     """Model for storing products"""
@@ -39,6 +42,7 @@ class Product(models.Model):
     stock = models.IntegerField(default=0)
 
     active = models.BooleanField(default=True)
+    trending = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -49,15 +53,17 @@ class Product(models.Model):
         super().save(force_insert, force_update, using, update_fields)
 
     def get_absolute_url(self):
-        return reverse('product-detail', kwargs={'category': self.category.name, 'slug': self.slug})
+        return reverse('product-detail', kwargs={'category': self.category.slug, 'slug': self.slug})
 
     def add_image(self, image):
         ins = ProductImage(product=self, src=image)
-
         # Set the first image as default
         if not self.images.exists():
             ins.default = True
         ins.save()
+
+    def default_image(self):
+        return self.images.filter(default=True).first()
 
 
 class ProductImage(models.Model):

@@ -15,6 +15,7 @@ class AddressForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super().save(commit=False)
-        instance.user = self.request.user
+        if self.request.user.is_authenticated:
+            instance.user = self.request.user
         instance.save()
         return instance

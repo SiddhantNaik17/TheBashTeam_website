@@ -10,4 +10,4 @@ class Motorcycle(models.Model):
     manufactured_year = models.CharField(max_length=10, choices=MANUFACTURED_YEAR_CHOICES)
 
     def __str__(self):
-        return self.company
+        return '%s %s' % (self.company, self.name)

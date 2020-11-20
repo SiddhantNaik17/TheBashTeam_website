@@ -20,6 +20,14 @@ def cart_add_product(request):
     return redirect('cart-detail')
 
 
+def cart_remove_product(request):
+    if request.method == 'POST':
+        cart = Cart.objects.get(request)
+        product_id = int(request.POST['product-id'])
+        cart.remove_product(product_id)
+    return redirect('cart-detail')
+
+
 class CartDetailView(DetailView):
     model = Cart
 
@@ -35,8 +43,9 @@ class CheckoutView(RequestFormAttachMixin, FormView):
     def form_valid(self, form):
         address = form.save()
         cart = Cart.objects.get(self.request)
+        user = self.request.user if self.request.user.is_authenticated else None
         order = Order.objects.create(
-            user=self.request.user,
+            user=user,
             cart=cart,
             shipping_address=address,
             total=cart.subtotal,  # Todo: + shipping charges

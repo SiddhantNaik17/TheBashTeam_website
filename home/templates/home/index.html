@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>THE ULTIMATE DESTINATION FOR MOTORCYCLE GEAR, ACCESSORIES AND PARTS</h2>
+<!--
+<div class="row">
+  <div class="column">
+    <div class="content">
+      <a href="">
+        <img src="{% static 'images/jacket.jpg' %}" style="width:100%">
+        <h3>Riding Gears</h3>
+      </a>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+      <a href="">
+        <img src="{% static 'images/accessories.jpg' %}" style="width:100%">
+        <h3>Accessories</h3>
+      </a>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+      <a href="">
+        <img src="{% static 'images/parts.jpg' %}" style="width:100%">
+        <h3>Parts</h3>
+      </a>
+    </div>
+  </div>
+</div>
+-->
+{% if user.is_authenticated %}
+{% for motorcycle in user.motorcycles_owned.all %}
+{% if motorcycle.products.exists %}
+<h3>Products for your {{ motorcycle }}</h3>
+<div class="row">
+  {% for product in motorcycle.products.all %}
+  <div class="column">
+    <div class="content">
+      <a href="{{ product.get_absolute_url }}">
+        <img src="{{ product.default_image.src.url }}">
+        <h3>{{ product }}</h3>
+      </a>
+      <div>
+        &#x20B9;{{ product.selling_price }} <del> &#x20B9;{{ product.mrp }} </del>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<h3>Trending Products</h3>
+<div class="row">
+  {% for product in trending_products %}
+  <div class="column">
+    <div class="content">
+      <a href="{{ product.get_absolute_url }}">
+        <img src="{{ product.default_image.src.url }}">
+        <h3>{{ product }}</h3>
+      </a>
+      <div>
+        &#x20B9;{{ product.selling_price }} <del> &#x20B9;{{ product.mrp }} </del>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
