@@ -17,12 +17,13 @@
 </section>
 
 <section id="order">
-    <form action="POST">
+    <form method="POST" action="{% url 'cart-add-product' %}">{% csrf_token %}
+        <input type="hidden" name="product-id" id="product-id" value="{{ product.id }}">
         <label for="quantity">Quantity:</label>
         <input type="number" name="quantity" id="quantity" min="1" value="1">
         <br><br>
-        <button type="button">Add to Cart</button>
-        <button type="button">Buy Now</button>
+        <button type="submit" name="submit" value="add_to_cart">Add to Cart</button>
+        <button type="submit" name="submit" value="buy_now">Buy Now</button>
         <br><br>
     </form>
 </section>

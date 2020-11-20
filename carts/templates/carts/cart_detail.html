@@ -1,0 +1,23 @@
+<h1>Cart</h1>
+
+{% if cart.products.exists %}
+<ul id="cart-items">
+    {% for cart_product in cart.products.all %}
+    <li id="item-{{ cart_product.id }}"><a href="{{ product.absolute_url }}">
+        {{ cart_product.product.name }} </a> Quantity: {{ cart_product.quantity }}
+        <button type='button' id="remove_product">Remove</button>
+    </li>
+    {% endfor %}
+</ul>
+
+Subtotal: &#x20B9;<span id="subtotal">{{ cart.subtotal }}</span>
+<br><br>
+
+<form method="post" action="{% url 'cart-checkout' %}">{% csrf_token %}
+    <input type="hidden" name="cart-id" id="cart-id">
+    <input type='submit' name="checkout" id="checkout" value="Checkout">
+</form>
+
+{% else %}
+Your cart is empty!
+{% endif %}

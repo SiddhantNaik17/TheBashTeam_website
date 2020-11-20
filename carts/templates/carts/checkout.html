@@ -1,0 +1,7 @@
+<h1>Checkout</h1>
+
+<form method="post">{% csrf_token %}
+    Enter Your Address
+    {{ form.as_p }}
+    <input type="submit" value="Proceed to Pay">
+</form>
