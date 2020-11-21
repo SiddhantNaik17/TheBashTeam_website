@@ -4,7 +4,8 @@ from django.contrib.auth.models import AbstractBaseUser
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password, full_name=None, is_active=True, is_staff=False, is_admin=False):
+    def create_user(self, email, password, full_name=None, motorcycles_owned=None,
+                    is_active=True, is_staff=False, is_admin=False):
         user = self.model(
             email=self.normalize_email(email),
             full_name=full_name
@@ -13,6 +14,8 @@ class UserManager(BaseUserManager):
         user.is_staff = is_staff
         user.is_admin = is_admin
         user.is_active = is_active
+        user.save()
+        user.motorcycles_owned.set(motorcycles_owned)
         user.save()
         return user
 
