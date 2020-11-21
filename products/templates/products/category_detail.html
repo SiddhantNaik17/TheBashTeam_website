@@ -19,7 +19,10 @@
     </div>
   </div>
   {% empty %}
-<h1 style="text-align:center"> &emsp;Products Out of Stock </h1>
+<div class="ui main centered text container grid">
+  <h1 class="ui header">Products are out of stock</h1>
+  <br><br>
+</div>
   {% endfor %}
 </div>
 {% endblock %}
