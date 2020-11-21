@@ -38,7 +38,7 @@ class CartDetailView(DetailView):
 class CheckoutView(RequestFormAttachMixin, FormView):
     form_class = AddressForm
     template_name = 'carts/checkout.html'
-    success_url = reverse_lazy('order-confirmed')
+    success_url = reverse_lazy('initiate-billing')
 
     def form_valid(self, form):
         address = form.save()

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'billing.apps.BillingConfig',
     'carts.apps.CartsConfig',
     'home.apps.HomeConfig',
     'motorcycles.apps.MotorcyclesConfig',
