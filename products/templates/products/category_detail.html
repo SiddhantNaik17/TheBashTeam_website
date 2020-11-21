@@ -5,7 +5,7 @@
 
 {% block content %}
 <br>
-<div class="ui link cards">
+<div class="ui centered link cards">
   {% for product in category.products.all %}
   <div class="ui card">
     <a class="image" href="{{ product.get_absolute_url }}">
@@ -19,7 +19,7 @@
     </div>
   </div>
   {% empty %}
-  No products yet
+<h1 style="text-align:center"> &emsp;Products Out of Stock </h1>
   {% endfor %}
 </div>
 {% endblock %}
