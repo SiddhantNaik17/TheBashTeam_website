@@ -9,12 +9,12 @@
 {% for motorcycle in user.motorcycles_owned.all %}
 {% if motorcycle.products.exists %}
 <br><br>
-<div class="ui text container">
+<div class="ui center aligned text container">
   <h2>Products for your {{ motorcycle }}</h2>
 </div>
 <br><br>
 
-<div class="ui link cards">
+<div class="ui centered link cards">
   {% for product in motorcycle.products.all %}
   <div class="ui card">
     <a class="image" href="{{ product.get_absolute_url }}">
@@ -33,13 +33,13 @@
 {% endfor %}
 {% endif %}
 <br><br><br>
-<div class="ui text container">
+<div class="ui center aligned text container">
   <h2>Trending Products</h2>
 </div>
 <br>
-<div class="ui link cards">
+<div class="ui centered link cards">
   {% for product in trending_products %}
-  <div class="ui card">
+  <div class="ui card ">
     <a class="image" href="{{ product.get_absolute_url }}">
       <img src="{{ product.default_image.src.url }}">
     </a>
