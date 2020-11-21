@@ -20,7 +20,7 @@ def initiate_transaction(order_id):
         'requestType': 'Payment',
         'websiteName': 'WEBSTAGING',
         'mid': PAYTM_MERCHANT_ID,
-        'orderId': order.id,
+        'orderId': 2 * order.id,
         'callbackUrl': 'http://127.0.0.1:8000' + str(reverse_lazy('processing')),
         'txnAmount': {
             'value': float(order.total),
@@ -41,7 +41,7 @@ def initiate_transaction(order_id):
     post_data = json.dumps(paytmParams)
 
     # for Staging
-    url = f"https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid={PAYTM_MERCHANT_ID}&orderId={order.id}"
+    url = f"https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid={PAYTM_MERCHANT_ID}&orderId={2 * order.id}"
 
     # for Production
     # url = "https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765"

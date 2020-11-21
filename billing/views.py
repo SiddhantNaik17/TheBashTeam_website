@@ -12,7 +12,7 @@ def initiate(request):
     response = initiate_transaction(order_id)
     context = {
         'mid': PAYTM_MERCHANT_ID,
-        'order_id': order_id,
+        'order_id': 2 * order_id,
         'txn_token': response['body']['txnToken'],
     }
     return render(request, 'billing/show_payments.html', context)

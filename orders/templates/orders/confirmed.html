@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Order Confirmed{% endblock title %}
 
 {% block content %}
 <div class="ui main centered text container grid">
+  <div class="ui medium image">
+    <img src="{% static 'images/confirmed.png' %}">
+  </div>
   <h1 class="ui header">Your order has been confirmed!</h1>
   <br><br>
 </div>
